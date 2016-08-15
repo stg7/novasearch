@@ -30,7 +30,7 @@
     <nav class="navbar">
         <div class="container">
 
-            <a href="./index.html" class="logo">Solr Search</a>
+            <a href="./index.html" class="logo">{{title}}</a>
 
             <ul class="nav navbar-nav navbar-right">
                 <li>

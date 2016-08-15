@@ -30,7 +30,6 @@ from bottle import error
 from bottle import static_file
 
 def check_user(user, pw):
-    print((user, pw))
     return user == "stg7" and pw == "42"
 
 
@@ -55,16 +54,28 @@ def pdf(sf, fn):
 def search(page=0):
     response.headers['Content-Type'] = 'application/json'
     response.headers['Cache-Control'] = 'no-cache'
-    # json.wrf=callback&
-    url = """http://localhost:8983/solr/acm-pdfs/select?indent=on&wt=json&start={page}&rows=30&""".format(page=int(page) * 30) + urllib.parse.urlencode({"q": request.query.q})
-    req = urllib.request.Request(url)
+    url = "http://localhost:8983/solr/acm-pdfs/select?"
+
+    params = {
+                "q": request.query.q,
+                "indent" : "on",
+                "wt": "json",
+                "start": int(page) * 30,
+                "rows": "30"
+             }
+            # json.wrf=callback&
+
+    url_params = urllib.parse.urlencode(params)
+
+
+    req = urllib.request.Request(url + url_params)
     handle = urllib.request.urlopen(req, timeout=120)
     encoding = handle.headers.get_content_charset()
     content = str(handle.read().decode(encoding, errors='ignore'))
     # documents base id
     baseid = "/run/media/stg7/30bf28d0-6a9b-4bd2-af15-4cfb128f229f/datasets/webis-computer-science-corpus/webis-csp-corpus/solr-6.1.0/.";
     tmp = json.loads(content.replace(baseid, ""))
-    new_docs = []
+
     for d in tmp["response"]["docs"]:
         meta = get_meta(d["id"])
         d["title"] = meta["title"]
@@ -100,7 +111,6 @@ def server_static(filename):
 
 def main(args):
     lInfo("start web interface for solr search")
-
 
     lInfo("server starting.")
     run(host='0.0.0.0', port=6090, debug=True, reloader=True)
