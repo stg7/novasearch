@@ -92,13 +92,6 @@
             </li>
               -->
             <!--
-            <li class="page-pattern"><a href="#" class="change-page">1</a></li>
-            <li class="page-pattern"><a href="#" class="change-page">2</a></li>
-            <li class="page-pattern"><a href="#" class="change-page">3</a></li>
-            <li class="page-pattern"><a href="#" class="change-page">4</a></li>
-            <li class="page-pattern"><a href="#" class="change-page">5</a></li>
-            -->
-            <!--
             <li>
               <a href="#" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>

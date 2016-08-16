@@ -39,18 +39,17 @@ function attachListener() {
           contentType: "application/json",
           dataType: 'json',
           success: function(json) {
-                console.log(json);
-                $(".time").text("needed time: " + json["responseHeader"]["QTime"]);
-                $(".query").text(query + " found " + json["response"]["numFound"] + " results");
-                json["response"]["docs"].forEach(function(r) {
-                    console.log(r);
-                    var title = r["title"];
-                    var id = r["id"];
-                    var new_row = "<tr> <td>" + title +  " </td>  <td> <a href=\"" + id + "\" target=\"_blank\">pdf</a> </td> </tr>";
-                    $("tbody[id=results]").append(new_row);
-                });
+              $(".time").text("needed time: " + json["responseHeader"]["QTime"]);
+              $(".query").text(query + " found " + json["response"]["numFound"] + " results");
+              json["response"]["docs"].forEach(function(r) {
+                  console.log(r);
+                  var title = r["title"];
+                  var id = r["id"];
+                  var new_row = "<tr> <td>" + title +  " </td>  <td> <a href=\"" + id + "\" target=\"_blank\">pdf</a> </td> </tr>";
+                  $("tbody[id=results]").append(new_row);
+              });
 
-              $(".results").css('visibility','visible');
+              $(".results").css('visibility', 'visible');
               $("ul[id=pages]").empty();
               var first = Math.max(Number(page) - 5, 1);
               var end = Math.min(json["response"]["numFound"] / 30, first + 9);
@@ -61,23 +60,21 @@ function attachListener() {
                   } else {
                       p = "<li class=\"page-pattern\"><a href=\"#\" class=\"change-page\">" + i + "</a></li>"
                   }
-
                   $("ul[id=pages]").append(p);
               }
               $(".change-page").click(function(e) {
                   var page = event.target.text;
                   search(e, page);
               });
-
           }
         });
     };
 
     $(".go").click(search);
     $(".change-page").click(function(e) {
-          var page = event.target.text;
-          search(e, page);
-      });
+        var page = event.target.text;
+        search(e, page);
+    });
 }
 
 
