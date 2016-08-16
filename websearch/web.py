@@ -41,7 +41,7 @@ def get_meta(id):
     j = json.load(f)
     f.close()
 
-    return {"title": j["title"], "abstract": ""}
+    return {"title": j["title"], "abstract": j.get("abstract", "")}
 
 
 @route('/pdf/<sf>/<fn>')
