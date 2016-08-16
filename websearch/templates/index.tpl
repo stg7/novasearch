@@ -30,7 +30,7 @@
     <nav class="navbar">
         <div class="container">
 
-            <a href="./index.html" class="logo">{{title}}</a>
+            <a href="./" class="logo">{{title}}</a>
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -83,7 +83,7 @@
 
         </article>
         <div class="pages">
-          <ul class="pagination">
+          <ul class="pagination" id="pages">
               <!--
             <li>
               <a href="#" aria-label="Previous">
@@ -91,11 +91,13 @@
               </a>
             </li>
               -->
+            <!--
             <li class="page-pattern"><a href="#" class="change-page">1</a></li>
             <li class="page-pattern"><a href="#" class="change-page">2</a></li>
             <li class="page-pattern"><a href="#" class="change-page">3</a></li>
             <li class="page-pattern"><a href="#" class="change-page">4</a></li>
             <li class="page-pattern"><a href="#" class="change-page">5</a></li>
+            -->
             <!--
             <li>
               <a href="#" aria-label="Next">

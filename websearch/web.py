@@ -51,7 +51,7 @@ def pdf(sf, fn):
 
 @route('/search')
 @route('/search/<page>')
-def search(page=0):
+def search(page=1):
     response.headers['Content-Type'] = 'application/json'
     response.headers['Cache-Control'] = 'no-cache'
     url = "http://localhost:8983/solr/acm-pdfs/select?"
@@ -60,7 +60,7 @@ def search(page=0):
                 "q": request.query.q,
                 "indent" : "on",
                 "wt": "json",
-                "start": int(page) * 30,
+                "start": (int(page) - 1) * 30,
                 "rows": "30"
              }
             # json.wrf=callback&

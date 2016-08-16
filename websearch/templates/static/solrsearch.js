@@ -25,7 +25,7 @@ function attachListener() {
         e.preventDefault();
         $("tbody[id=results]").empty();
         if (page == null) {
-            page = 0;
+            page = 1;
         }
 
         var query = $("input[name=query]")[0].value;
@@ -51,6 +51,24 @@ function attachListener() {
                 });
 
               $(".results").css('visibility','visible');
+              $("ul[id=pages]").empty();
+              var first = Math.max(Number(page) - 5, 1);
+              var end = Math.min(json["response"]["numFound"] / 30, first + 9);
+
+              for(var i = first; i <= end; i++) {
+                  if (i == page) {
+                      p = "<li class=\"page-pattern active\"><a href=\"#\" class=\"change-page\">" + i + "</a></li>"
+                  } else {
+                      p = "<li class=\"page-pattern\"><a href=\"#\" class=\"change-page\">" + i + "</a></li>"
+                  }
+
+                  $("ul[id=pages]").append(p);
+              }
+              $(".change-page").click(function(e) {
+                  var page = event.target.text;
+                  search(e, page);
+              });
+
           }
         });
     };
