@@ -30,7 +30,7 @@
     <nav class="navbar">
         <div class="container">
 
-            <a href="./index.html" class="logo">Solr Search</a>
+            <a href="./" class="logo">Solr Search</a>
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./about.html" >about</a>
+                    <a href="./about" >about</a>
                 </li>
             </ul>
         </div>
@@ -59,32 +59,21 @@
     </form>
 
 
-      <div class="results">
+      <div class="about">
         <hr />
-
-        Search results for <em class="query">query</em>
-
-        <article class="bg-info">
-            <div class="panel panel-default">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Pdf</th>
-                            </tr>
-                        </thead>
-                        <tbody id="results">
-                        <!-- results -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </article>
-        <div>
-          <text class="time"></text>ms <br><text class="server"></text>
-        </div>
+        <p><em>"Information is nothing without retrieval."</em></p>
+        <p>
+        {{title}} is a small proof-of-concept project. I collected a lot computer science papers and
+        wanted to try the search backend <a href="http://lucene.apache.org/solr/" >apache solr</a>
+        that is based on lucene.
+        </p>
+        <p>
+        I was looking for a nice modern frontend, but I could not found a suitable one.
+        That's why I created an own web interface using python3, bottle and a bit of javascript.
+        </p>
+        <p>
+        .....
+        </p>
       </div>
 
       </section>

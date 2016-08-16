@@ -44,19 +44,19 @@
             </ul>
         </div>
     </nav>
-
     <div class="maincontent">
+
       <section class="container theme-showcase" role="main" style="height:80%">
+        <form class="form-inline search" method="get" action="#" >
+            <input name="query" type="query" class="form-control"
+                placeholder="Search for Papers" style="width:40%" required>
 
-    <form class="form-inline search" method="get" action="./index.html" >
-        <input name="query" type="query" class="form-control"
-            placeholder="Search for Papers" style="width:40%" required>
-
-        <div class="btn-group">
-            <button type="submit" class="btn btn-success go"><span class="glyphicon glyphicon-search"></span></button>
-            </button>
-        </div>
-    </form>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-success go">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </div>
+        </form>
 
 
       <div class="results">
@@ -71,7 +71,7 @@
                         <thead>
                             <tr>
                                 <th>Title</th>
-                                <th>Pdf</th>
+                                <th>More</th>
                             </tr>
                         </thead>
                         <tbody id="results">

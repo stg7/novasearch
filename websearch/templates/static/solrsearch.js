@@ -45,7 +45,7 @@ function attachListener() {
                   console.log(r);
                   var title = r["title"];
                   var id = r["id"];
-                  var new_row = "<tr> <td>" + title +  " </td>  <td> <a href=\"" + id + "\" target=\"_blank\">pdf</a> </td> </tr>";
+                  var new_row = "<tr> <td>" + title +  " </td>  <td> <a href=\"" + id + "\" target=\"_blank\">[pdf]</a> </td> </tr>";
                   $("tbody[id=results]").append(new_row);
               });
 
