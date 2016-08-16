@@ -53,6 +53,14 @@ function attachListener() {
               $("ul[id=pages]").empty();
               var first = Math.max(Number(page) - 5, 1);
               var end = Math.min(json["response"]["numFound"] / 30, first + 9);
+              if (page > 1) {
+                  p = "<li> <a href=\"#\" aria-label=\"Previous\" class=\"page-prev\"> <span aria-hidden=\"true\">&laquo;</span> </a> </li>"
+                  $("ul[id=pages]").append(p);
+                  $("a[class=page-prev]").click(function(e){
+                      search(e, page - 1);
+                  });
+              }
+
 
               for(var i = first; i <= end; i++) {
                   if (i == page) {
@@ -66,6 +74,14 @@ function attachListener() {
                   var page = event.target.text;
                   search(e, page);
               });
+
+              if (page <= json["response"]["numFound"] / 30) {
+                  p = "<li> <a href=\"#\" aria-label=\"Next\" class=\"page-next\"> <span aria-hidden=\"true\">&raquo;</span> </a> </li>"
+                  $("ul[id=pages]").append(p);
+                  $("a[class=page-next]").click(function(e){
+                      search(e, page + 1);
+                  });
+              }
           }
         });
     };
