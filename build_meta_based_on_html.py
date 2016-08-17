@@ -30,12 +30,12 @@ def extract_meta(x):
     for l in f:
         if "<title>" in l:
             title = l.replace("<title>", "").replace("</title>", "").strip()
-        if "ABSTRACT</A>" in l:
-            abstract_start = True
         if abstract_start and "AUTHORS</SPAN>" in l:
             abstract_start = False
         if abstract_start:
             abstract += l
+        if "ABSTRACT</A>" in l:
+            abstract_start = True
 
     f.close()
     newfile = x.replace("html/", "meta/").replace(".html", ".json")
@@ -43,7 +43,7 @@ def extract_meta(x):
     os.system("mkdir -p {p}".format(p=newpath))
     f = open(newfile, "w")
     meta = {"title": title, "abstract": cleanhtml(abstract)}
-    f.write(json.dumps(meta))
+    f.write(json.dumps(meta,indent=4, sort_keys=True))
     f.close()
     print(title)
 

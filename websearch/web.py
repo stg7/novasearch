@@ -60,23 +60,21 @@ def search(page=1):
                 "q": request.query.q,
                 "indent" : "on",
                 "wt": "json",
-                "start": (int(page) - 1) * 30,
+                "start": max((int(page) - 1) * 30, 0),
                 "rows": "30"
              }
             # json.wrf=callback&
 
     url_params = urllib.parse.urlencode(params)
 
-
     req = urllib.request.Request(url + url_params)
     handle = urllib.request.urlopen(req, timeout=120)
     encoding = handle.headers.get_content_charset()
     content = str(handle.read().decode(encoding, errors='ignore'))
-    # documents base id
-    baseid = "/run/media/stg7/30bf28d0-6a9b-4bd2-af15-4cfb128f229f/datasets/webis-computer-science-corpus/webis-csp-corpus/solr-6.1.0/.";
-    tmp = json.loads(content.replace(baseid, ""))
+    tmp = json.loads(content)
 
     for d in tmp["response"]["docs"]:
+        d["id"] = "./pdf" + d["id"].split("../pdf")[1]
         meta = get_meta(d["id"])
         d["title"] = meta["title"]
         d["abstract"] = meta["abstract"]
@@ -86,12 +84,12 @@ def search(page=1):
 
 @route('/about')
 def about():
-    return template("templates/about.tpl", title="Solr Search")
+    return template("templates/about.tpl", title="nova search")
 
 
 @route('/')
 def index():
-    return template("templates/index.tpl", title="Solr Search")
+    return template("templates/index.tpl", title="nova search")
 
 
 @error(404)

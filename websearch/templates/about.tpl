@@ -19,7 +19,9 @@
 
       <div class="about">
         <hr />
-        <p><em>"Information is nothing without retrieval."</em></p>
+        <div class="alert alert-info" role="alert">
+            <em>"Information is nothing without retrieval."</em>
+        </div>
         <p>
         {{title}} is a small proof-of-concept project. I collected a lot computer science papers and
         wanted to try the search backend <a href="http://lucene.apache.org/solr/" >apache solr</a>

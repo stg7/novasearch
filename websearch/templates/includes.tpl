@@ -13,4 +13,5 @@
 <link rel="stylesheet" href="static/solrsearch.css">
 
 <script src="static/solrsearch.js"></script>
-<link href='https://fonts.googleapis.com/css?family=Orbitron:900' rel='stylesheet' type='text/css'>
+
+<link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
