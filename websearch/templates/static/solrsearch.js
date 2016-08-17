@@ -40,13 +40,26 @@ function attachListener() {
           dataType: 'json',
           success: function(json) {
               $(".time").text("needed time: " + json["responseHeader"]["QTime"]);
-              $(".query").text(query + " found " + json["response"]["numFound"] + " results");
+              $(".query").text(query);
+              $(".result-count").text("found " + json["response"]["numFound"] + " documents.");
+
               json["response"]["docs"].forEach(function(r) {
                   console.log(r);
                   var title = r["title"];
                   var id = r["id"];
-                  var new_row = "<tr> <td>" + title +  " </td>  <td> <a href=\"" + id + "\" target=\"_blank\">[pdf]</a> </td> </tr>";
-                  $("tbody[id=results]").append(new_row);
+
+                  var result = "<tr class=\"result-row\"> <td> " + title +
+                               "<br/> <small class=\"abstract\">" + r["abstract"] +
+                               "</small> </td>  <td> <a href=\"" + id + "\" target=\"_blank\">[pdf]</a>" +
+                               "</td> <td><a href=\"#\" class=\"show-abstract\"><span class=\"caret\"></span></a></td> </tr>";
+
+                  $("tbody[id=results]").append(result);
+              });
+
+              $(".show-abstract").click(function(e) {
+                  e.preventDefault();
+                  var x = $(this).parent().parent().children().children(".abstract");
+                  x.toggle(200);
               });
 
               $(".results").css('visibility', 'visible');
@@ -71,6 +84,7 @@ function attachListener() {
                   $("ul[id=pages]").append(p);
               }
               $(".change-page").click(function(e) {
+                  e.preventDefault();
                   var page = event.target.text;
                   search(e, page);
               });
@@ -88,6 +102,7 @@ function attachListener() {
 
     $(".go").click(search);
     $(".change-page").click(function(e) {
+        e.preventDefault();
         var page = event.target.text;
         search(e, page);
     });

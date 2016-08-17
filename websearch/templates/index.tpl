@@ -1,49 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="Steve Göring">
-   <head>
-    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Steve Göring">
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <head>
+        <title>{{title}}</title>
+        % include('templates/includes.tpl')
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-        <link rel="stylesheet" href="static/solrsearch.css">
-
-        <script src="static/solrsearch.js"></script>
-        <link href='https://fonts.googleapis.com/css?family=Orbitron:900' rel='stylesheet' type='text/css'>
-
+        <script>
+            (function($) {
+              $.QueryString = (function(a) {
+                  if (a == "") return {};
+                  var b = {};
+                  for (var i = 0; i < a.length; ++i) {
+                      var p=a[i].split('=');
+                      if (p.length != 2)
+                          continue;
+                      b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+                  }
+                  return b;
+              })(window.location.search.substr(1).split('&'))
+            })(jQuery);
+            $(document).ready(function() {
+                var query = $.QueryString["query"];
+                if (query != undefined) {
+                    $("input[name=query]")[0].value  = query;
+                    $(".go").click();
+                }
+            });
+        </script>
   </head>
-
 <body>
-    <nav class="navbar">
-        <div class="container">
+    % include('templates/navigation.tpl')
 
-            <a href="./" class="logo">{{title}}</a>
-
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="http://github.com/stg7/phrasit" target="_blank">
-                    <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" style="height:1.5em" />
-                    </a>
-                </li>
-                <li>
-                    <a href="./about" >about</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
     <div class="maincontent">
 
       <section class="container theme-showcase" role="main" style="height:80%">
@@ -62,7 +53,7 @@
       <div class="results">
         <hr />
 
-        Search results for <em class="query">query</em>
+        Search results for <em class="query">query</em> <text class="result-count">found ...</text>
 
         <article class="bg-info">
             <div class="panel panel-default">
@@ -72,6 +63,7 @@
                             <tr>
                                 <th>Title</th>
                                 <th>More</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="results">
@@ -95,9 +87,7 @@
       </section>
     </div>
 
-    <footer>
-      &copy; stg7 2016 - <a href="https://github.com/stg7" >Steve Göring</a>
-    </footer>
+    % include("templates/footer.tpl")
 
   </body>
 
