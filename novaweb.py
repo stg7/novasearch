@@ -34,7 +34,7 @@ def check_user(user, pw):
 
 
 def get_meta(id):
-    filename = id.replace("./pdf/", "../meta/").replace(".pdf", ".json")
+    filename = id.replace("./pdf/", "dataset/meta/").replace(".pdf", ".json")
     if not os.path.isfile(filename):
         return {"title": "", "abstract": ""}
     f = open(filename)
@@ -47,7 +47,7 @@ def get_meta(id):
 @route('/pdf/<sf>/<fn>')
 @auth_basic(check_user)
 def pdf(sf, fn):
-    return static_file(sf + "/" + fn, root='../pdf')
+    return static_file(sf + "/" + fn, root='./dataset/pdf')
 
 @route('/search')
 @route('/search/<page>')
@@ -108,7 +108,7 @@ def server_static(filename):
 
 
 def main(args):
-    lInfo("start web interface for solr search")
+    lInfo("start web interface for nova search")
 
     lInfo("server starting.")
     run(host='0.0.0.0', port=6090, debug=True, reloader=True)

@@ -1,7 +1,9 @@
-pdf
-bib
-meta
-html
+dataset/pdf
+dataset/bib
+dataset/meta
+dataset/html
 __pycache__
 solr-6.1.0
 infiles
+dataset/solr-6.1.0.tgz
+dataset/*.ldjson
