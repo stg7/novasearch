@@ -39,7 +39,6 @@ def check_user(user, pw):
 
 def get_meta(id):
     filename = id.replace("./pdf", config["meta_base_dir"]).replace(".pdf", ".json")
-    print(filename)
     if not os.path.isfile(filename):
         return {"title": "", "abstract": ""}
     f = open(filename)
