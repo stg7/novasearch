@@ -29,12 +29,16 @@ from bottle import response
 from bottle import error
 from bottle import static_file
 
+
+config = {}
+
+
 def check_user(user, pw):
     return user == "stg7" and pw == "42"
 
 
 def get_meta(id):
-    filename = id.replace("./pdf/", "dataset/meta/").replace(".pdf", ".json")
+    filename = id.replace("./pdf/", config["meta_base_dir"]).replace(".pdf", ".json")
     if not os.path.isfile(filename):
         return {"title": "", "abstract": ""}
     f = open(filename)
@@ -47,14 +51,14 @@ def get_meta(id):
 @route('/pdf/<sf>/<fn>')
 @auth_basic(check_user)
 def pdf(sf, fn):
-    return static_file(sf + "/" + fn, root='./dataset/pdf')
+    return static_file(sf + "/" + fn, root=config["pdf_base_dir"])
 
 @route('/search')
 @route('/search/<page>')
 def search(page=1):
     response.headers['Content-Type'] = 'application/json'
     response.headers['Cache-Control'] = 'no-cache'
-    url = "http://localhost:8983/solr/acm-pdfs/select?"
+    url = config["solar_base_url"] #"http://localhost:8983/solr/acm-pdfs/select?"
 
     params = {
                 "q": request.query.q,
@@ -110,8 +114,13 @@ def server_static(filename):
 def main(args):
     lInfo("start web interface for nova search")
 
+    global config
+    with open(os.path.dirname(os.path.realpath(__file__)) + "/config.json") as f:
+        config = json.load(f)
+        lInfo("config loaded")
+
     lInfo("server starting.")
-    run(host='0.0.0.0', port=6090, debug=True, reloader=True)
+    run(host=config["server_address"], port=config["server_port"], debug=True, reloader=True)
     lInfo("server stopped.")
 
 
