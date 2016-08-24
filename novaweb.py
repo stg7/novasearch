@@ -53,21 +53,20 @@ def get_meta(id):
 def pdf(sf, fn):
     return static_file(sf + "/" + fn, root=config["pdf_base_dir"])
 
+
 @route('/search')
 @route('/search/<page>')
 def search(page=1):
     response.headers['Content-Type'] = 'application/json'
     response.headers['Cache-Control'] = 'no-cache'
-    url = config["solar_base_url"] #"http://localhost:8983/solr/acm-pdfs/select?"
+    url = config["solar_base_url"]
 
-    params = {
-                "q": request.query.q,
-                "indent" : "on",
-                "wt": "json",
-                "start": max((int(page) - 1) * 30, 0),
-                "rows": "30"
-             }
-            # json.wrf=callback&
+    params = {"q": request.query.q,
+              "indent": "on",
+              "wt": "json",
+              "start": max((int(page) - 1) * 30, 0),
+              "rows": "30"
+              }
 
     url_params = urllib.parse.urlencode(params)
 
