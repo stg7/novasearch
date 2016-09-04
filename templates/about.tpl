@@ -9,6 +9,13 @@
 
         % include('templates/includes.tpl')
 
+
+        <script type="text/javascript">
+        $().ready(function() {
+          build_toc();
+        });
+
+        </script>
     </head>
 <body>
 
@@ -18,22 +25,34 @@
       <section class="container theme-showcase" role="main" style="height:80%">
 
       <div class="about">
-        <hr />
-        <div class="alert alert-info" role="alert">
-            <em>"Information is nothing without retrieval."</em>
-        </div>
-        <p>
-        {{title}} is a small proof-of-concept project. I collected a lot computer science papers and
-        wanted to try the search backend <a href="http://lucene.apache.org/solr/" >apache solr</a>
-        that is based on lucene.
-        </p>
-        <p>
-        I was looking for a nice modern frontend, but I could not found a suitable one.
-        That's why I created an own web interface using python3, bottle and a bit of javascript.
-        </p>
-        <p>
-        .....
-        </p>
+        <article>
+            <h2 id="about">About</h2>
+            <p>
+            {{title}} is a small proof-of-concept project. I collected a lot computer science papers and
+            wanted to try the search backend <a href="http://lucene.apache.org/solr/" >Apache Solr</a>.
+            Solr is based on lucene, what I already used before. So indexing using Solr is quite easy, just
+            store all pdfs,... in one directory and add it to a solr collection (so it will need a bit of time,
+            the used memory to 5GB).
+            </p>
+            <h3>Frontend for Solr</h3>
+            <p>
+            I was looking for a nice modern frontend, but I could not found a suitable one.
+            There exists a lot of frontends, but some are ugly, some are ruby and some wont work anymore.
+            That's why I created an own web interface using python3, bottle and a bit of javascript.
+            </p>
+            <h3>Motivation</h3>
+            You collect several papers a whole life in scientific research, it is annoying if you cannot find
+            the suitable paper or text:
+            <div class="alert alert-info" role="alert">
+                <em>"Information is nothing without retrieval."</em>
+            </div>
+            Based on this approach you always need to have good techniques for getting needed informations based on
+            your local library/collection of papers.
+            <h3 id="develop">Development</h3>
+            <p>
+            You can look at the github page for more information about local development and setup.
+            </p>
+        </article>
       </div>
 
       </section>
