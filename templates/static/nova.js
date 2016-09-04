@@ -27,6 +27,8 @@ function attachListener() {
         if (page == null) {
             page = 1;
         }
+        page = parseInt(page);
+        console.log("page: " + page);
 
         var query = $("input[name=query]")[0].value;
         $(".query").text(query);
@@ -44,7 +46,6 @@ function attachListener() {
               $(".result-count").text("found " + json["response"]["numFound"] + " documents.");
 
               json["response"]["docs"].forEach(function(r) {
-                  console.log(r);
                   var title = r["title"];
                   var id = r["id"];
 
@@ -103,7 +104,7 @@ function attachListener() {
     $(".go").click(search);
     $(".change-page").click(function(e) {
         e.preventDefault();
-        var page = event.target.text;
+        var page = parseInt(event.target.text);
         search(e, page);
     });
 }
