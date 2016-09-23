@@ -27,7 +27,6 @@
 import sys
 import os
 import argparse
-import shelve
 import json
 import urllib.request
 import re
@@ -70,6 +69,8 @@ def get_meta(id):
 
 
 def get_dblp_bibtex(title):
+    if title == "":
+        return ""
     url = "http://dblp.dagstuhl.de/search/publ/api?"
     params = {"q": title, "format": "json"}
     url_params = urllib.parse.urlencode(params)
@@ -167,15 +168,38 @@ def server_static(filename):
 
 
 def main(args):
+    parser = argparse.ArgumentParser(description='nova search web server',
+                                     epilog="stg7 2016",
+                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--config',
+                        type=str,
+                        default=os.path.dirname(os.path.realpath(__file__)) + "/config.json",
+                        help='configuration file')
+
+    parser.add_argument('-d',
+                        dest='debug',
+                        action='store_true',
+                        help='debug web server mode')
+
+    parser.add_argument('-r',
+                        dest='reload',
+                        action='store_true',
+                        help='reload web server')
+
+    argsdict = vars(parser.parse_args())
     lInfo("start web interface for nova search")
 
     global config
-    with open(os.path.dirname(os.path.realpath(__file__)) + "/config.json") as f:
+    with open(argsdict["config"]) as f:
         config = json.load(f)
         lInfo("config loaded")
 
     lInfo("server starting.")
-    run(host=config["server_address"], port=config["server_port"], debug=True, reloader=True)
+    run(host=config["server_address"],
+        port=config["server_port"],
+        debug=argsdict["debug"],
+        reloader=argsdict["reload"])
+
     lInfo("server stopped.")
 
 
