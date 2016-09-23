@@ -22,6 +22,7 @@ def cleanhtml(raw_html):
 
     return filtered_string.strip()
 
+
 def extract_meta(x):
     f = open(x, "r", errors='ignore')
     title = ""
@@ -46,6 +47,7 @@ def extract_meta(x):
     f.write(json.dumps(meta,indent=4, sort_keys=True))
     f.close()
     print(title)
+
 
 def main(params):
     os.system("mkdir -p meta")

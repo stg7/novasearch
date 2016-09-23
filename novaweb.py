@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-    Copyright 2015-today
-    Project Solr Search
+    Copyright 2016-today
+    Project Nova Search
 
     Author: Steve Göring
 """
@@ -48,10 +48,45 @@ def get_meta(id):
     return {"title": j["title"], "abstract": j.get("abstract", "")}
 
 
+def get_dblp_bibtex(title):
+    url = "http://dblp.dagstuhl.de/search/publ/api?"
+    params = {"q": title, "format": "json"}
+    url_params = urllib.parse.urlencode(params)
+
+    req = urllib.request.Request(url + url_params)
+    handle = urllib.request.urlopen(req, timeout=120)
+    encoding = handle.headers.get_content_charset()
+    content = str(handle.read().decode(encoding, errors='ignore'))
+    j_res = json.loads(content)
+
+    new_url = j_res["result"]["hits"]["hit"][0]["info"]["url"].replace("/rec/", "/rec/bib2/");
+
+    req = urllib.request.Request(new_url)
+    handle = urllib.request.urlopen(req, timeout=120)
+    encoding = handle.headers.get_content_charset()
+    content = str(handle.read().decode(encoding, errors='ignore'))
+
+    return content
+
+
 @route('/pdf/<sf>/<fn>')
 @auth_basic(check_user)
 def pdf(sf, fn):
     return static_file(sf + "/" + fn, root=config["pdf_base_dir"])
+
+
+@route('/bib/<sf>/<fn>')
+def bib(sf, fn):
+    """
+    do a request to dblp to get the bibtex entry
+    """
+    response.content_type = 'text/plain'
+
+    did = "./pdf/" + sf + "/" + fn
+    x = get_meta(did)
+    title = x["title"]
+
+    return get_dblp_bibtex(title)
 
 
 @route('/search')

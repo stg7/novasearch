@@ -48,10 +48,12 @@ function attachListener() {
               json["response"]["docs"].forEach(function(r) {
                   var title = r["title"];
                   var id = r["id"];
+                  var filename = id.replace("./pdf/", "");
 
                   var result = "<tr class=\"result-row\"> <td> " + title +
                                "<br/> <small class=\"abstract\">" + r["abstract"] +
-                               "</small> </td>  <td> <a href=\"" + id + "\" target=\"_blank\">[pdf]</a>" +
+                               "</small> </td>  <td> <a href=\"" + id + "\" target=\"_blank\">[pdf]</a> " +
+                               "<a id=\"bibtex\" href=\"./bib/" + filename + "\" target=\"_blank\">[bib]</a>" +
                                "</td> <td><a href=\"#\" class=\"show-abstract\"><span class=\"caret\"></span></a></td> </tr>";
 
                   $("tbody[id=results]").append(result);
@@ -74,7 +76,6 @@ function attachListener() {
                       search(e, page - 1);
                   });
               }
-
 
               for(var i = first; i <= end; i++) {
                   if (i == page) {
