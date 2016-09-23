@@ -46,7 +46,7 @@ Bibtex entries will be queried using [dblp](http://dblp.uni-trier.de/)
 via stored title attribute in meta, because dblp bibtex entries are clean and homogeneous.
 
 Web-css is done by [bootstrap](http://getbootstrap.com/) and some javascript magic
-is done using [jQuery](https://jquery.com/).
+using [jQuery](https://jquery.com/).
 
 
 Ideas/improvements
