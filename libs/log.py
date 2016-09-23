@@ -1,13 +1,29 @@
 #!/usr/bin/env python3
 """
-    Logging
+    Copyright 2016-today
+    Project Nova Search
 
-    small colored logging functions for python
-
-    author: Steve Göring
-    contact: stg7@gmx.de
-    2015
+    Author: Steve Göring
 """
+"""
+    colored simple logging methods
+
+    This file is part of novasearch.
+
+    novasearch is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    novasearch is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with novasearch.  If not, see <http://www.gnu.org/licenses/>.
+"""
+
 import json
 import pprint
 

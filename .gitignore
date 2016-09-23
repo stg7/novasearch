@@ -2,8 +2,8 @@ dataset/pdf
 dataset/bib
 dataset/meta
 dataset/html
-dataset/solr-6.1.0
 dataset/infiles
-dataset/solr-6.1.0.tgz
+dataset/solr-*.tgz
+dataset/solr/
 dataset/*.ldjson
 __pycache__

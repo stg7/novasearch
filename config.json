@@ -3,5 +3,6 @@
     "server_address": "0.0.0.0",
     "solar_base_url": "http://localhost:8983/solr/acm-pdfs/select?",
     "meta_base_dir": "./dataset/meta",
-    "pdf_base_dir": "./dataset/pdf"
+    "pdf_base_dir": "./dataset/pdf",
+    "login" : {"user": "stg7",  "pw": "42"}
 }
