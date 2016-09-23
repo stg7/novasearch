@@ -1,5 +1,8 @@
 var server_url = "./search"
 
+/*
+create a table of contents
+*/
 function build_toc() {
     var ToC = "<nav role='navigation' class='table-of-contents'><ul>";
 
@@ -19,6 +22,9 @@ function build_toc() {
     $("article").prepend(ToC);
 }
 
+/*
+add all listeners
+*/
 function attachListener() {
 
     var search = function(e, page) {
@@ -110,8 +116,6 @@ function attachListener() {
     });
 }
 
-
 $().ready(function() {
     attachListener();
-
 });

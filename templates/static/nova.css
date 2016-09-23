@@ -22,18 +22,6 @@ footer {
     color:#0009b5;
     font-size: 4em;
     font-family: 'Orbitron', sans-serif;
-    /*
-    font-family: 'Megrim', cursive;
-    font-family: 'Geo', sans-serif;
-    font-family: 'Rationale', sans-serif;
-    font-family: 'Indie Flower', cursive;
-    font-family: 'Iceland', cursive;
-    font-family: 'Russo One', sans-serif;
-    font-family: 'Michroma', sans-serif;
-    font-family: 'Josefin Slab', serif;
-    font-family: 'Lobster', cursive;
-    font-family: 'Baloo Da', cursive;
-    */
 }
 .logo:hover {
     text-decoration: none;
@@ -81,9 +69,7 @@ input[type="range" i] {
      width:100%;
      float: right;
 }
-.go { /* seach button */
-
-}
+.go { /* seach button */}
 .btn-success {
     background-color: #0009b5 !important;
     background-image: linear-gradient(#0009b5 0px, #1019b5 100%) !important;

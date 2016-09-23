@@ -5,7 +5,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="http://github.com/stg7/phrasit" target="_blank">
+                <a href="http://github.com/stg7/novasearch" target="_blank">
                 <img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" style="height:1.5em" />
                 </a>
             </li>
