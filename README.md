@@ -47,3 +47,10 @@ via stored title attribute in meta, because dblp bibtex entries are clean and ho
 
 Web-css is done by [bootstrap](http://getbootstrap.com/) and some javascript magic
 is done using [jQuery](https://jquery.com/).
+
+
+Ideas/improvements
+------------------
+* add a document store (so that file system access is not needed anymore)
+* use solr meta fields for storing meta information OR use a document store for meta infos
+* cache dblp requests local OR extract all infos from dblp dump
