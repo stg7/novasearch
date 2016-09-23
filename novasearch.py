@@ -91,17 +91,24 @@ def get_dblp_bibtex(title):
     return content
 
 
+@route('/pdf/<fn>')
 @route('/pdf/<sf>/<fn>')
 @auth_basic(check_user)
-def pdf(sf, fn):
+def pdf(sf="", fn=""):
+    if sf == "" and fn == "":
+        return error404("not a valid file")
     return static_file(sf + "/" + fn, root=config["pdf_base_dir"])
 
 
+@route('/bib/<fn>')
 @route('/bib/<sf>/<fn>')
-def bib(sf, fn):
+def bib(sf="", fn=""):
     """
     do a request to dblp to get the bibtex entry
     """
+    if sf == "" and fn == "":
+        return error404("not a valid file as argument")
+
     response.content_type = 'text/plain'
 
     did = "./pdf/" + sf + "/" + fn
