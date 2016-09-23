@@ -1,7 +1,7 @@
 novasearch
 ==========
 Novasearch is a nice and simple solr web
-frontend based on [bottle](http://bottlepy.org/docs/dev/index.html).
+front end based on [bottle](http://bottlepy.org/docs/dev/index.html).
 
 Dataset preparation
 -------------------
@@ -21,7 +21,8 @@ The meta file will be used during search result presentation.
 Solr will be used as backend, so a simple call of `prepare.sh` will install solr in the dataset directory.
 
 ### Solr indexing
-After you downloaded solr, you can easily start the index process, so change to dataset directory and run `index_build.sh`:
+After you downloaded solr, you can easily start the index process,
+so change to dataset directory and run `index_build.sh`:
 ```
 cd dataset
 ./index_build.sh
@@ -29,7 +30,7 @@ cd dataset
 
 First start
 -----------
-After you indexed all your pdfs and all meta files are stored you can start novasearch via
+After you indexed all your pdfs and all meta files are stored, you can start novasearch via
 ```
 ./novaweb.py
 ```
@@ -41,7 +42,8 @@ by customizing `config.json`, an example configuration is already prepared.
 
 Technical background
 --------------------
-Bibtex entries will be queried using dblp via stored title attribute in meta, because dblp bibtex
-entries are clean and homogeneous.
+Bibtex entries will be queried using [dblp](http://dblp.uni-trier.de/)
+via stored title attribute in meta, because dblp bibtex entries are clean and homogeneous.
 
-Web-css is done by bootstrap.
+Web-css is done by [bootstrap](http://getbootstrap.com/) and some javascript magic
+is done using [jQuery](https://jquery.com/).

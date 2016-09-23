@@ -53,7 +53,7 @@ def cleanhtml(raw_html):
 
 def extract_meta(x):
     """
-    extract meta inforamtions of html file x (acm html download)
+    extract meta inforamtions of html file `x` (download acm html page)
     """
     f = open(x, "r", errors='ignore')
     title = ""
