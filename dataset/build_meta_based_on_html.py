@@ -38,7 +38,7 @@ def cleanhtml(raw_html):
     remove all html related tags in a string to plain text
     """
     cleanr = re.compile('<.*?>')
-    cleantext = re.sub(cleanr,'', raw_html)
+    cleantext = re.sub(cleanr, '', raw_html)
     from html import unescape
 
     tmp = unescape(cleantext.replace("\n", " "))
@@ -75,7 +75,7 @@ def extract_meta(x):
     os.system("mkdir -p {p}".format(p=newpath))
     f = open(newfile, "w")
     meta = {"title": title, "abstract": cleanhtml(abstract)}
-    f.write(json.dumps(meta,indent=4, sort_keys=True))
+    f.write(json.dumps(meta, indent=4, sort_keys=True))
     f.close()
     print(title)
 

@@ -80,7 +80,7 @@ def get_dblp_bibtex(title):
     content = str(handle.read().decode(encoding, errors='ignore'))
     j_res = json.loads(content)
 
-    new_url = j_res["result"]["hits"]["hit"][0]["info"]["url"].replace("/rec/", "/rec/bib2/");
+    new_url = j_res["result"]["hits"]["hit"][0]["info"]["url"].replace("/rec/", "/rec/bib2/")
 
     req = urllib.request.Request(new_url)
     handle = urllib.request.urlopen(req, timeout=120)
