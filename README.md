@@ -32,7 +32,7 @@ First start
 -----------
 After you indexed all your pdfs and all meta files are stored, you can start novasearch via
 ```
-./novaweb.py
+./novasearch.py
 ```
 It is necessary that solr is running (you can manually start it via `./start_solr.sh`).
 
